@@ -481,34 +481,35 @@ await enterRoom(nextRoomIndex);
     renderCertificate();
   };
 
-  const renderCertificate = () => {
-    clearApp();
+const renderCertificate = () => {
+  clearApp();
 
-    const screen = createElement('main', 'screen certificate-screen');
+  const screen = createElement('main', 'screen certificate-screen');
 
-    const image = document.createElement('img');
-    image.className = 'room-image';
-    image.src = imageSrc('certificate.png');
-    image.alt = '';
+  const image = document.createElement('img');
+  image.className = 'room-image';
+  image.src = imageSrc('certificate.png');
+  image.alt = '';
 
-    const panel = createElement('section', 'certificate-panel');
+  const message = createElement('div', 'certificate-message');
+  message.innerHTML = `
+    <div class="congrats-title">〜Congratulations!〜</div>
+    <div class="screenshot-guide">名前を入力して画面をスクリーンショットしてください</div>
+  `;
 
-    const nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.placeholder = '氏名を入力';
-    nameInput.autocomplete = 'off';
+  const nameInput = document.createElement('input');
+  nameInput.className = 'certificate-name-input';
+  nameInput.type = 'text';
+  nameInput.placeholder = '氏名を入力';
+  nameInput.autocomplete = 'off';
 
-    const info = createElement('div', 'certificate-info');
-    info.innerHTML = `クリアタイム：${formatTime(state.clearTime)}<br>ミス回数：${state.wrongCount}回`;
+  const info = createElement('div', 'certificate-info');
+  info.innerHTML = `クリアタイム：${formatTime(state.clearTime)}<br>ミス回数：${state.wrongCount}回`;
 
-    panel.append(nameInput, info);
-    screen.append(image, panel);
-    app.appendChild(screen);
+  screen.append(image, message, nameInput, info);
+  app.appendChild(screen);
 
-    nameInput.focus();
-    state.isTransitioning = false;
-  };
-
-  renderLoading();
-});
+  nameInput.focus();
+  state.isTransitioning = false;
+};
 
