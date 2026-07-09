@@ -1,0 +1,428 @@
+/* =========================================================
+   Psychology Escape Version 1.0
+   style.css ①
+   基本設定・共通画面・画像表示
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: "Yu Gothic", "Hiragino Sans", "Meiryo", sans-serif;
+  color: #222;
+}
+
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ---------- 共通画面 ---------- */
+
+.screen {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ---------- 画像 ---------- */
+
+.room-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #000;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* タイトル・廊下・ドア・ゲームオーバー・脱出・修了証 */
+.title-screen .room-image,
+.hallway-screen .room-image,
+.outside-door-open-screen .room-image,
+.inside-door-open-screen .room-image,
+.locked-screen .room-image,
+.gameover-screen .room-image,
+.escape-screen .room-image,
+.certificate-screen .room-image {
+  object-fit: contain;
+  object-position: center center;
+}
+
+/* 問題画面：壁背景 */
+.room-screen .room-image {
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* ---------- 黒画面 ---------- */
+
+.black-screen {
+  background: #000;
+}
+
+/* ---------- Loading ---------- */
+
+.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.loading-text {
+  font-size: clamp(22px, 3vw, 42px);
+  font-weight: bold;
+  color: #eee;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- タイトル ---------- */
+
+.title-screen {
+  background: #000;
+}
+
+.title-button {
+  position: absolute;
+  left: 50%;
+  bottom: max(6dvh, 36px);
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.version-text {
+  position: absolute;
+  right: max(3vw, 18px);
+  bottom: max(3dvh, 18px);
+  z-index: 10;
+
+  white-space: pre-line;
+  text-align: right;
+
+  font-size: clamp(11px, 1.1vw, 16px);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+}
+/* =========================================================
+   Psychology Escape Version 1.0
+   style.css ②
+   ボタン・入力欄・問題画面
+========================================================= */
+
+/* ---------- ボタン ---------- */
+
+button,
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  padding: clamp(10px, 1.5vw, 16px) clamp(24px, 3vw, 44px);
+  border-radius: 14px;
+
+  font-size: clamp(17px, 1.8vw, 26px);
+  font-weight: bold;
+  font-family: inherit;
+
+  color: #222;
+  background: rgba(255, 255, 255, 0.95);
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+button:active,
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* ---------- 入力欄 ---------- */
+
+input {
+  font-family: inherit;
+}
+
+.answer-input {
+  width: 100%;
+  max-width: 560px;
+
+  padding: clamp(12px, 1.8vw, 20px) clamp(14px, 2vw, 24px);
+
+  font-size: clamp(22px, 2.5vw, 34px);
+  text-align: center;
+
+  border: 4px solid #1f5f99;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.96);
+  color: #222;
+
+  outline: none;
+}
+
+.answer-input:focus {
+  box-shadow: 0 0 0 4px rgba(31, 95, 153, 0.28);
+}
+
+/* ---------- 問題画面 ---------- */
+
+.room-screen {
+  background: #000;
+}
+
+.question-panel {
+  position: absolute;
+  z-index: 5;
+
+  left: 50%;
+  top: 14%;
+  transform: translateX(-50%);
+
+  width: min(88vw, 900px);
+  height: auto;
+
+  padding: 0;
+
+  background: none;
+  border: none;
+  box-shadow: none;
+
+  color: #111;
+  text-align: center;
+}
+
+.progress-text {
+  font-size: clamp(16px, 1.4vw, 22px);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.room-title {
+  font-size: clamp(28px, 2.4vw, 42px);
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+.question {
+  font-size: clamp(23px, 2.1vw, 36px);
+  line-height: 1.55;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  word-break: break-word;
+}
+
+.answer-form {
+  position: absolute;
+  z-index: 6;
+
+  left: 50%;
+  top: 56%;
+  transform: translateX(-50%);
+
+  width: min(78vw, 560px);
+  text-align: center;
+}
+
+.answer-form button {
+  display: block;
+  margin: 16px auto 0;
+}
+/* =========================================================
+   Psychology Escape Version 1.0
+   style.css ③
+   GAME OVER・修了証・レスポンシブ
+========================================================= */
+
+/* ---------- GAME OVER ---------- */
+
+.gameover-panel {
+  position: absolute;
+  left: 50%;
+  bottom: max(6dvh, 40px);
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: min(92vw, 760px);
+  z-index: 10;
+}
+
+/* ---------- 復習 ---------- */
+
+.review-screen {
+  overflow-y: auto;
+  background: #111;
+  color: #fff;
+  padding: 32px 18px;
+}
+
+.review-panel {
+  width: min(920px, 94vw);
+  margin: auto;
+
+  padding: 28px;
+
+  background: #fff;
+  color: #222;
+
+  border-radius: 18px;
+}
+
+.review-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: clamp(24px, 2.5vw, 36px);
+}
+
+.review-item {
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #ccc;
+}
+
+.review-question {
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.7;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.review-hint {
+  font-size: clamp(17px, 1.6vw, 22px);
+  line-height: 1.7;
+}
+
+.review-panel .btn {
+  display: block;
+  margin: 28px auto 0;
+}
+
+/* ---------- 修了証 ---------- */
+
+.certificate-panel {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+
+  width: min(84vw, 640px);
+
+  text-align: center;
+  z-index: 10;
+}
+
+.certificate-panel input {
+  width: min(80vw, 420px);
+
+  padding: 12px;
+
+  font-size: clamp(20px, 2vw, 30px);
+
+  text-align: center;
+
+  border: 2px solid #444;
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.95);
+}
+
+.certificate-info {
+  margin-top: 20px;
+
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.8;
+  font-weight: bold;
+}
+
+/* ---------- スマホ ---------- */
+
+@media (max-width:900px){
+
+  .question-panel{
+    top:10%;
+    width:92vw;
+  }
+
+  .progress-text{
+    font-size:16px;
+  }
+
+  .room-title{
+    font-size:28px;
+    margin-bottom:14px;
+  }
+
+  .question{
+    font-size:22px;
+    line-height:1.55;
+  }
+
+  .answer-form{
+    top:48%;
+    width:82vw;
+  }
+
+  .answer-input{
+    font-size:22px;
+  }
+
+  button,
+  .btn{
+    font-size:20px;
+  }
+
+}
+
+/* ---------- 横画面 ---------- */
+
+@media (max-height:600px){
+
+  .question-panel{
+    top:8%;
+  }
+
+  .question{
+    font-size:20px;
+  }
+
+  .answer-form{
+    top:52%;
+  }
+
+}
+
+/* ---------- 小さいスマホ ---------- */
+
+@media (max-width:430px){
+
+  .question-panel{
+    width:94vw;
+  }
+
+  .question{
+    font-size:19px;
+  }
+
+  .answer-form{
+    width:88vw;
+  }
+
+}
