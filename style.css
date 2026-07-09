@@ -355,30 +355,31 @@ input {
   }
 
   .question-panel {
-    left: 10%;
-    top: 6%;
-    width: 80%;
-    height: 24%;
-    padding: 8px 12px;
+    left: 23%;
+    top: 13%;
+    width: 53%;
+    height: 18%;
+    padding: 6px 8px;
   }
 
   .progress-text {
-    font-size: 11px;
-    margin-bottom: 2px;
+    font-size: 10px;
+    margin-bottom: 1px;
   }
 
   .room-title {
-    font-size: 15px;
-    margin-bottom: 4px;
+    font-size: 13px;
+    margin-bottom: 3px;
   }
 
   .question {
-    font-size: 13px;
-    line-height: 1.32;
+    font-size: 11px;
+    line-height: 1.28;
+    font-weight: 600;
   }
 
   .answer-form {
-    top: 35%;
+    top: 37%;
     width: 68vw;
   }
 
