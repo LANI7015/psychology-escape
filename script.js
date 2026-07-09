@@ -386,12 +386,11 @@ document.addEventListener('DOMContentLoaded', () => {
     nameInput.type = 'text';
     nameInput.placeholder = '氏名を入力';
     nameInput.autocomplete = 'off';
-
- const info = createElement(
-  'div',
-  'certificate-info',
-  `クリアタイム：${formatTime(state.clearTime)}\nミス回数：${state.wrongCount}回`
-);
+    
+    const info = createElement('div', 'certificate-info');
+　　　info.innerHTML =
+  `クリアタイム：${formatTime(state.clearTime)}<br>
+　　ミス回数：${state.wrongCount}回`;
 
     panel.append(nameInput, info);
     wrapper.append(image, panel);
