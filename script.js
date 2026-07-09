@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const SCREEN_TIME = {
     loading: 900,
-    black: 650,
-    hallway: 2600,
-    outsideDoorOpen: 2400,
-    insideDoorOpen: 2400,
-    locked: 1900,
+    black: 750,
+    hallway: 3200,
+    outsideDoorOpen: 3200,
+    insideDoorOpen: 3200,
+    locked: 2400,
     escape: 2300,
   };
 
@@ -359,16 +359,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     await transitionBlack();
 
-    renderImageScreen('knob-inside.png', 'inside-door-open-screen');
-    playDoor();
-    await wait(SCREEN_TIME.insideDoorOpen);
+   if (nextRoomIndex >= rooms.length) {
+   await clearGame();
+   return;
+　　}
 
-    await transitionBlack();
+renderImageScreen('knob-inside.png', 'inside-door-open-screen');
+playDoor();
+await wait(SCREEN_TIME.insideDoorOpen);
 
-    if (nextRoomIndex >= rooms.length) {
-      await clearGame();
-      return;
-    }
+await transitionBlack();
+
+await enterRoom(nextRoomIndex);
 
     await enterRoom(nextRoomIndex);
   };
