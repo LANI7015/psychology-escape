@@ -8,15 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const VERSION_TEXT = 'Psychology Escape\nVersion 1.0\n© Yuki Yokota';
 
-  const SCREEN_TIME = {
-    loading: 750,
-    black: 600,
-    hallway: 2400,
-    outsideDoorOpen: 3200,
-    insideDoorOpen: 3200,
-    locked: 2400,
-    escape: 2300,
-  };
+const SCREEN_TIME = {
+  loading: 750,
+  black: 600,
+  hallway: 2400,
+  outsideDoorOpen: 3200,
+  insideDoorOpen: 3200,
+  locked: 2400,
+  escape: 2300,
+  congrat: 4000,
+};
 
   const state = {
     currentRoom: 0,
@@ -468,16 +469,23 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const clearGame = async () => {
-    state.clearTime = Date.now() - state.startTime;
+  state.clearTime = Date.now() - state.startTime;
 
-    renderImageScreen('escape.png', 'escape-screen');
-    playClear();
-    await wait(SCREEN_TIME.escape);
+  // 脱出
+  renderImageScreen('escape.png', 'escape-screen');
+  playClear();
+  await wait(SCREEN_TIME.escape);
 
-    await transitionBlack();
+  await transitionBlack();
 
-    renderCertificate();
-  };
+  // Congratulations
+  renderImageScreen('congrat.png', 'congrat-screen');
+  await wait(SCREEN_TIME.congrat);
+
+  await transitionBlack();
+
+  renderCertificate();
+};
 
 const renderCertificate = () => {
   clearApp();
@@ -487,13 +495,6 @@ const renderCertificate = () => {
   const image = document.createElement('img');
   image.className = 'room-image';
   image.src = imageSrc('certificate.png');
-  image.alt = '';
-
-  const message = createElement('div', 'certificate-message');
-  message.innerHTML = `
-    <div class="congrats-title">〜Congratulations!〜</div>
-    <div class="screenshot-guide">名前を入力して画面をスクリーンショットしてください</div>
-  `;
 
   const nameInput = document.createElement('input');
   nameInput.className = 'certificate-name-input';
@@ -501,15 +502,36 @@ const renderCertificate = () => {
   nameInput.placeholder = '氏名を入力';
   nameInput.autocomplete = 'off';
 
-  const info = createElement('div', 'certificate-info');
-  info.innerHTML = `クリアタイム：${formatTime(state.clearTime)}<br>ミス回数：${state.wrongCount}回`;
+  const now = new Date();
 
-  screen.append(image, message, nameInput, info);
+  const date =
+    `${now.getFullYear()}年` +
+    `${String(now.getMonth()+1).padStart(2,'0')}月` +
+    `${String(now.getDate()).padStart(2,'0')}日 ` +
+    `${String(now.getHours()).padStart(2,'0')}:` +
+    `${String(now.getMinutes()).padStart(2,'0')}`;
+
+  const info = createElement('div','certificate-info');
+
+  info.innerHTML = `
+    脱出日時：${date}<br>
+    所要時間：${formatTime(state.clearTime)}<br>
+    誤答回数：${state.wrongCount}回
+  `;
+
+  screen.append(
+    image,
+    nameInput,
+    info
+  );
+
   app.appendChild(screen);
 
   nameInput.focus();
+
   state.isTransitioning = false;
 };
+
 renderLoading();
 });
 
