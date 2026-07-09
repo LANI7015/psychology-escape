@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const VERSION_TEXT = 'Psychology Escape\nVersion 1.0\n© Yuki Yokota';
 
   const SCREEN_TIME = {
-    loading: 900,
-    black: 750,
-    hallway: 3200,
+    loading: 750,
+    black: 600,
+    hallway: 2400,
     outsideDoorOpen: 3200,
     insideDoorOpen: 3200,
     locked: 2400,
