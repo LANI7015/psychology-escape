@@ -17,20 +17,6 @@
 - door-locked-action.png
 - gameover.png
 - escape.png
-- certificate.png
-
-## 問題画像
-
-`questions/` に以下を入れてください。
-
-- q1.png
-- q2.png
-- q3.png
-- q4.png
-- q5.png
-- q6.png
-- q7.png
-- q8.png
 
 ## 音声ファイル
 
