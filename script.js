@@ -355,25 +355,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   const moveAfterAnswer = async (nextRoomIndex) => {
-    state.isTransitioning = true;
+  state.isTransitioning = true;
 
-    await transitionBlack();
+  await transitionBlack();
 
-   if (nextRoomIndex >= rooms.length) {
-   await clearGame();
-   return;
-　　}
+  if (nextRoomIndex >= rooms.length) {
+    await clearGame();
+    return;
+  }
 
-renderImageScreen('knob-inside.png', 'inside-door-open-screen');
-playDoor();
-await wait(SCREEN_TIME.insideDoorOpen);
+  renderImageScreen('knob-inside.png', 'inside-door-open-screen');
+  playDoor();
+  await wait(SCREEN_TIME.insideDoorOpen);
 
-await transitionBlack();
+  await transitionBlack();
 
-await enterRoom(nextRoomIndex);
-
-    await enterRoom(nextRoomIndex);
-  };
+  await enterRoom(nextRoomIndex);
+};
 
   const gameOver = async () => {
     state.isTransitioning = true;
@@ -512,4 +510,6 @@ const renderCertificate = () => {
   nameInput.focus();
   state.isTransitioning = false;
 };
+renderLoading();
+});
 
