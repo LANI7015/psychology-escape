@@ -169,64 +169,32 @@ input {
 ========================================================= */
 
 /* ---------- 問題画面 ---------- */
-
-.room-screen {
-  background: #000;
+.room-screen .room-image {
+  object-fit: cover;
+  object-position: center center;
 }
 
-/* ホワイトボード内の問題文 */
 .question-panel {
   position: absolute;
-  z-index: 5;
-
-  left: 22%;
-  top: 13%;
-  width: 56%;
-  height: 30%;
-
-  padding: clamp(8px, 1.2vw, 18px) clamp(12px, 1.8vw, 28px);
-
-  overflow: hidden;
+  left: 50%;
+  top: 18%;
+  transform: translateX(-50%);
+  width: min(88vw, 820px);
+  height: auto;
+  padding: 22px 24px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
   color: #222;
-  background: transparent;
 }
 
-.progress-text {
-  font-size: clamp(12px, 1.1vw, 18px);
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.room-title {
-  font-size: clamp(16px, 1.6vw, 28px);
-  margin-bottom: 8px;
-}
-
-.question {
-  font-size: clamp(14px, 1.45vw, 24px);
-  line-height: 1.45;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  word-break: break-word;
-}
-
-/* 回答欄 */
 .answer-form {
   position: absolute;
-  z-index: 6;
-
   left: 50%;
-  top: 48%;
+  top: 58%;
   transform: translateX(-50%);
-
-  width: min(52vw, 520px);
-  text-align: center;
+  width: min(78vw, 520px);
 }
 
-.answer-form button {
-  display: block;
-  margin: 12px auto 0;
-}
 
 /* ---------- GAME OVER ---------- */
 
