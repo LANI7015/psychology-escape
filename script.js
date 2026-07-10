@@ -527,7 +527,7 @@ const renderCertificate = () => {
 
   app.appendChild(screen);
 
-  nameInput.focus();
+  //nameInput.focus();
 
   state.isTransitioning = false;
 };
