@@ -501,7 +501,9 @@ const renderCertificate = () => {
   nameInput.type = 'text';
   nameInput.placeholder = '氏名を入力';
   nameInput.autocomplete = 'off';
-
+nameInput.autocorrect = 'off';
+nameInput.autocapitalize = 'off';
+nameInput.spellcheck = false;
   const now = new Date();
 
   const date =
