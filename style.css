@@ -346,7 +346,7 @@ input {
 .certificate-name-input {
   position: absolute;
   left: 50%;
-  top: 49%;
+  top: 47%;
   transform: translateX(-50%);
 
   width: min(78vw, 320px);
