@@ -394,6 +394,34 @@ input {
   object-position: center;
 }
 
+/* 修了証 名前入力 */
+
+.certificate-name-input {
+  background: transparent !important;
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+
+  text-align: center;
+  color: #000;
+
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.certificate-name-input:focus {
+  background: transparent !important;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.certificate-name-input:-webkit-autofill,
+.certificate-name-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  transition: background-color 9999s;
+}
+
 /* ---------- スマホ ---------- */
 
 @media (max-width:900px){
