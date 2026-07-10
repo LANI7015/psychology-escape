@@ -468,3 +468,54 @@ input {
   }
 
 }
+
+/* =========================================================
+   スマホ版・認定証画面の修正
+========================================================= */
+
+/* congrat.pngを切らずに全体表示 */
+.certificate-screen .room-image,
+.congrat-screen .room-image {
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: contain !important;
+  object-position: center center !important;
+
+  background: #000 !important;
+}
+
+/* 名前入力欄の黄色い背景を無効化 */
+.certificate-panel input,
+.certificate-panel input:focus,
+.certificate-panel input:active {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  background-image: none !important;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  -webkit-box-shadow:
+    0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
+  box-shadow:
+    0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
+
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+
+  border: 2px solid #444 !important;
+  border-radius: 10px;
+  caret-color: #000;
+  outline: none;
+}
+
+/* Safariの自動入力時の黄色を無効化 */
+.certificate-panel input:-webkit-autofill,
+.certificate-panel input:-webkit-autofill:hover,
+.certificate-panel input:-webkit-autofill:focus,
+.certificate-panel input:-webkit-autofill:active {
+  -webkit-box-shadow:
+    0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 9999s ease-out 0s;
+}
