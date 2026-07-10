@@ -301,7 +301,7 @@ const playClear = () => {
     const startButton = createButton('ENTER', 'btn title-button', async () => {
       if (state.isTransitioning) return;
 
-　　　　unlockAudio();
+unlockAudio();
       playClick();
 
       state.currentRoom = 0;
