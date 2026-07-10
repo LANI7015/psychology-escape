@@ -128,11 +128,62 @@ const SCREEN_TIME = {
 
   const imageSrc = (fileName) => `${IMAGE_PATH}${fileName}`;
 
-  const playSound = (fileName) => {
-    const audio = new Audio(`${AUDIO_PATH}${fileName}`);
-    audio.currentTime = 0;
-    audio.play().catch(() => {});
-  };
+/* ---------- 音声 ---------- */
+
+const sounds = {
+  door: new Audio(`${AUDIO_PATH}door.mp3`),
+  click: new Audio(`${AUDIO_PATH}click.mp3`),
+  locked: new Audio(`${AUDIO_PATH}locked.mp3`),
+  clear: new Audio(`${AUDIO_PATH}clear.mp3`),
+};
+
+/* 音声をあらかじめ読み込む */
+Object.values(sounds).forEach((audio) => {
+  audio.preload = 'auto';
+  audio.load();
+});
+
+let audioUnlocked = false;
+
+/* iPhone Safariの音声再生制限を解除する */
+const unlockAudio = () => {
+  if (audioUnlocked) return;
+
+  Object.values(sounds).forEach((audio) => {
+    audio.muted = true;
+
+    const promise = audio.play();
+
+    if (promise !== undefined) {
+      promise
+        .then(() => {
+          audio.pause();
+          audio.currentTime = 0;
+          audio.muted = false;
+        })
+        .catch(() => {
+          audio.muted = false;
+        });
+    }
+  });
+
+  audioUnlocked = true;
+};
+
+const playSound = (soundName) => {
+  const audio = sounds[soundName];
+
+  if (!audio) return;
+
+  audio.pause();
+  audio.currentTime = 0;
+  audio.muted = false;
+
+  audio.play().catch((error) => {
+    console.warn(`${soundName}の再生に失敗しました。`, error);
+  });
+};
+
   const wait = (ms) =>
     new Promise((resolve) => {
       window.setTimeout(resolve, ms);
@@ -205,21 +256,22 @@ const SCREEN_TIME = {
     await wait(SCREEN_TIME.black);
   };
 
-  const playDoor = () => {
-    playSound('door.mp3');
-  };
+const playDoor = () => {
+  playSound('door');
+};
 
-  const playClick = () => {
-    playSound('click.mp3');
-  };
+const playClick = () => {
+  playSound('click');
+};
 
-  const playLocked = () => {
-    playSound('locked.mp3');
-  };
+const playLocked = () => {
+  playSound('locked');
+};
 
-  const playClear = () => {
-    playSound('clear.mp3');
-  };
+const playClear = () => {
+  playSound('clear');
+};
+
   const renderLoading = async () => {
     clearApp();
 
@@ -249,6 +301,7 @@ const SCREEN_TIME = {
     const startButton = createButton('ENTER', 'btn title-button', async () => {
       if (state.isTransitioning) return;
 
+　　　　unlockAudio();
       playClick();
 
       state.currentRoom = 0;
