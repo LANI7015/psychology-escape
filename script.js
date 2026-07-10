@@ -580,24 +580,18 @@ nameInput.spellcheck = false;
     info
   );
 
-app.appendChild(screen);
+  app.appendChild(screen);
 
-/* 入力後にフォーカスを外す */
+  nameInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      nameInput.blur();
+    }
+  });
 
-nameInput.addEventListener('keydown', (e) => {
-
-  if (e.key === 'Enter') {
-
-    e.preventDefault();
-
-    nameInput.blur();
-
-  }
-
-});
-
-state.isTransitioning = false;
+  state.isTransitioning = false;
+};
 
 renderLoading();
-});
 
+});
